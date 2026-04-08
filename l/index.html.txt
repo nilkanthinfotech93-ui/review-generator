@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review Generator - Nilkanth Infotech</title>
+
+<style>
+body {
+  font-family: Arial;
+  background:#f2f2f2;
+  margin:0;
+}
+.container {
+  max-width:420px;
+  margin:auto;
+  padding:15px;
+}
+.card {
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+h2 { text-align:center; }
+
+input, select, button, textarea {
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+
+button {
+  background:#007bff;
+  color:#fff;
+  border:none;
+}
+
+textarea {
+  height:140px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h2>⭐ Share Your Review</h2>
+
+    <input type="text" id="name" placeholder="Your Name">
+
+    <select id="service">
+      <option>CCTV Installation</option>
+      <option>Security System</option>
+      <option>Wireless Alarm System</option>
+      <option>Maintenance Service</option>
+    </select>
+
+    <select id="language">
+      <option value="en">English</option>
+      <option value="gu">Gujarati</option>
+    </select>
+
+    <button onclick="generateReview()">Generate Review</button>
+
+    <textarea id="output" placeholder="Your review will appear here..."></textarea>
+
+    <button onclick="copyText()">📋 Copy Review</button>
+    <button onclick="openGoogle()">⭐ Post on Google</button>
+
+  </div>
+</div>
+
+<script>
+function generateReview() {
+
+  var service = document.getElementById("service").value;
+  var lang = document.getElementById("language").value;
+
+  var reviews_en = [
+    "Excellent " + service + " service by Nilkanth Infotech in Ahmedabad. Quick installation and very professional team.",
+    "Highly satisfied with " + service + ". Best CCTV service provider in Ahmedabad.",
+    "Great experience with Nilkanth Infotech. Reliable and fast service."
+  ];
+
+  var reviews_gu = [
+    "Nilkanth Infotech દ્વારા ખુબ જ સરસ " + service + " સેવા મળી. ખુબ પ્રોફેશનલ ટીમ.",
+    "Ahmedabad માં CCTV માટે શ્રેષ્ઠ સેવા. ખુબ જ સંતોષ થયો.",
+    "ખૂબ જ સારી અને ઝડપી સેવા. Highly recommended."
+  ];
+
+  var finalReview;
+
+  if(lang == "gu") {
+    finalReview = reviews_gu[Math.floor(Math.random() * reviews_gu.length)];
+  } else {
+    finalReview = reviews_en[Math.floor(Math.random() * reviews_en.length)];
+  }
+
+  document.getElementById("output").value = finalReview;
+}
+
+function copyText() {
+  var text = document.getElementById("output");
+  text.select();
+  document.execCommand("copy");
+  alert("Copied!");
+}
+
+function openGoogle() {
+  window.open("https://g.page/r/CTjtyeEyrKNIEAE/review");
+}
+</script>
+
+</body>
+</html>
